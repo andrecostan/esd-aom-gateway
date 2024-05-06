@@ -1,5 +1,5 @@
 spring:
-  cloud:
-    config:
-      uri: https://github.com/andrecostan/esd-aom-config-repo.git
-      label: main
+  # Config server
+  config:
+    import:
+      - optional:configserver:http://localhost:8888
