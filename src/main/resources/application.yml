@@ -1,0 +1,5 @@
+spring:
+  cloud:
+    config:
+      uri: https://github.com/andrecostan/esd-aom-config-repo.git
+      label: main
