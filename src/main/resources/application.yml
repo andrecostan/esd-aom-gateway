@@ -1,5 +1,41 @@
+#spring:
+#  # Config server
+#  config:
+#    import:
+#      - optional:configserver:http://localhost:8888
+
+server:
+  port: 8765
+
+## implementar portar aleatoria
+#server:
+#  port: *
+
 spring:
-  # Config server
-  config:
-    import:
-      - optional:configserver:http://localhost:8888
+  application:
+    name: esd-aom-gateway
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+    # Disable config server
+    config:
+      enabled: false
+
+# Eureka settings
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+# Actuator settings
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*' # Não é recomendado expor todos os endpoints
